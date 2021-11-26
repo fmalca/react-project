@@ -3,6 +3,6 @@
 # Desafío 1: 
 Crear un proyecto react con el cli
 
-# Desafío 1: 
+# Desafío 2: 
 Crear un menu
 
