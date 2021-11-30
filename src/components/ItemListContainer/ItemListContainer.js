@@ -6,7 +6,7 @@ const ItemListContainer = ({greeting}) => {
     return (
         <div>
             <Alert variant="primary">    
-                Contenedor ItemListContainer
+                {greeting}
             </Alert>
         </div>
    )
