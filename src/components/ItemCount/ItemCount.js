@@ -1,33 +1,32 @@
 import React from 'react'
 import {useState} from 'react'
+import Button from 'react-bootstrap/Button';
 
-const ItemCount = () => {
-    const [count, setCount] = useState(0)
-    const [stockMax] = useState(3)
-    const [stockMin] = useState(0)
 
+const ItemCount = ({initial, stock}) => {
+    const [count, setCount] = useState(initial)
+    
     const aumenta = () => { 
-        if (count+1 <= stockMax )       
+        if (count+1 <= stock )       
          setCount(count + 1)   
     }
 
     const disminuye = () => {
-        if (count-1 >= stockMin)
+        if (count-1 >= initial)
         setCount(count - 1)   
-   }
-
+    }
 
     return (
         <div>
-            <button onClick={disminuye}>
+            <Button variant="secondary" size="lg" onClick={disminuye} >
                 - 
-            </button>
-            <button>
+            </Button>{'  '}
+            <Button variant="success" size="lg">
             {count}
-            </button>
-            <button onClick={aumenta}>
+            </Button>{'  '}
+            <Button variant="secondary" size="lg" onClick={aumenta} >            
                 + 
-            </button>
+            </Button>
         </div>
     )
 }
