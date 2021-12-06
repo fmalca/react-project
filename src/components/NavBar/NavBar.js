@@ -9,7 +9,7 @@ const NavBar = () => {
     return (
         <>           
             <Navbar bg="light" variant="light">
-                <Container>
+                <Container fluid>
                     <Navbar.Brand href="#home"><img src={logo} alt="" /></Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link href="#home">Hogar</Nav.Link>
