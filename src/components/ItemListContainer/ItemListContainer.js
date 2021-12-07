@@ -21,9 +21,7 @@ const ItemListContainer = ({greeting}) => {
                     {greeting}
                 </Alert>            
                 <ItemCount initial= {initial} stock={stock}  />
-                <ItemList />
-                {products.map(product => <li>{product.name}</li>) }
-
+                <ItemList data={products} />
             </Container>
         </div>
    )
