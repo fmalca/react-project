@@ -2,19 +2,20 @@ import React from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import {useState, useEffect} from 'react'
 import { getFetch } from "../../helpers/getFetch";
+import { useParams} from "react-router-dom";
 
 const ItemDetailContainer = () => {
     
     const [product, setProduct] = useState({})
     const [loading, setLoading] = useState(true) 
-
+    
+    const {id} = useParams()
 
     useEffect(() => {
-        getFetch.then(resp => setProduct(resp[0]))
+        getFetch.then(resp => setProduct(resp.filter(prod=>prod.id===parseInt(id))))
         .catch(err=>console.log(err))
         .finally(()=>setLoading(false))
-    },[]) 
-
+    },[id]) 
 
     return (
         <>

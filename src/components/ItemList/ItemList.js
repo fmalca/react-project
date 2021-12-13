@@ -13,7 +13,8 @@ const ItemList = ({data}) => {
                       title={product.title}
                       description={product.description}
                       price={product.price}
-                      pictureUrl={product.pictureUrl} 
+                      pictureUrl={product.pictureUrl}
+                      category = {product.category} 
                        />
                 </div>
                 )

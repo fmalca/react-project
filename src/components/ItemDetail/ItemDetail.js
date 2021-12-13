@@ -8,13 +8,13 @@ const ItemDetail = ({product}) => {
             <Row className="justify-content-md-center">  
                 <Card style={{ width: '18rem' }}>
                     <Card.Header>Detalle del producto</Card.Header>
-                    <Card.Img variant="top" src={product.pictureUrl} />
+                    <Card.Img variant="top" src={product[0].pictureUrl} />
                     <Card.Body>
-                        <Card.Title>{product.title}</Card.Title>
+                        <Card.Title>{product[0].title}</Card.Title>
                         <Card.Text>
-                            <li>ID: {product.id}</li>
-                            <li>Descripción: {product.description}</li>
-                            <li>Precio: $ {product.price}</li>                
+                            <li>ID: {product[0].id}</li>
+                            <li>Descripción: {product[0].description}</li>
+                            <li>Precio: $ {product[0].price}</li>                
                         </Card.Text>            
                     </Card.Body>
                 </Card>

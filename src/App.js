@@ -14,10 +14,22 @@ function App() {
         <BrowserRouter>
           <NavBar />
           <Routes>
-            <Route path="/" element= {<ItemListContainer greeting="Soy el contenedor" /> } />
-            <Route path="/categoria" element= {<ItemListContainer greeting="Soy el contenedor" /> } />
-            <Route path="/detalle" element= { <ItemDetailContainer  /> } />            
-            <Route path="/cart" element= { <Cart /> } />            
+            <Route 
+              exact 
+              path="/" 
+              element= {<ItemListContainer greeting="Soy el contenedor" /> } />
+            <Route 
+              exact
+              path="/categoria/:idCategoria" 
+              element= {<ItemListContainer greeting="Soy el contenedor" /> } />
+            <Route 
+              exact
+              path="/detalle/:id" 
+              element= { <ItemDetailContainer  /> } />            
+            <Route 
+              exact 
+              path="/cart" 
+              element= { <Cart /> } />            
           </Routes>
         </BrowserRouter>
       </Container>
