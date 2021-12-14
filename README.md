@@ -1,12 +1,23 @@
 # Proyecto del curso de React en Coderhouse
+  Entrega parcial
 
-# Desafío 1: Crear un proyecto react con el cli
-Se utilizó create-react-app para crear una aplicación React
+# Dependencias
+  react-bootstrap
+  react-icons
+  
+# Estructura general de la aplicación
 
-# Desafío 2: Crear una barra de menú simple
-Se creó el componente NavBar para mostrar un menú simple
-Se utilizó la librería bootstrap ( se instaló con npm el paquete react-bootstrap)
-# Desafío 3: Crear componentes CartWidget y ItemListContainer
-Se utilizó react-bootstrap y react-icons
-# Desafío 4: Crear ItemCount
-Se creó contador con useState
+- App : Definición de rutas
+        /                   --> ItemListContainer
+        /categoria/:idCat   --> ItemListContainer
+        /detalle/:id        --> ItemDetailContainer
+        /cart               --> Cart 
+
+- ItemListContainer     : Carga los datos y llama a ItemList
+- ItemList              : Lista cada dato llamando a Item (es una lista de Item)
+- Item                  : Muestra los datos del item. Cada Item tiene un botón que llama a ItemDetailContainer
+                          para mostrar información detallada del item
+- ItemDetailContainer   : Carga la información del item y lo muestra a través de ItemDetail
+- ItemDetail            : Muestra información detallada del item. Tiene un botón para agregar al carrito de compras
+                      
+

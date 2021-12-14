@@ -6,18 +6,14 @@ import {useState, useEffect} from "react";
 import { useParams} from "react-router-dom";
 
 const ItemListContainer = ({greeting}) => {
-    //const initial = 1
-    //const stock = 5 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true) 
 
-    const {idCategoria} = useParams()
-
-    console.log(idCategoria)
+    const {idCat} = useParams()    
 
     useEffect(() => {
-        if(idCategoria){
-            getFetch.then(resp => setProducts(resp.filter(prod=>prod.category===idCategoria)))
+        if(idCat){
+            getFetch.then(resp => setProducts(resp.filter(prod=>prod.category===idCat)))
             .catch(err=>console.log(err))
             .finally(()=>setLoading(false))
         } else {
@@ -25,7 +21,7 @@ const ItemListContainer = ({greeting}) => {
             .catch(err=>console.log(err))
             .finally(()=>setLoading(false))
         }
-    },[idCategoria]) 
+    },[idCat]) 
 
     return (
         <div>

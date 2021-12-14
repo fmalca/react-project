@@ -7,8 +7,7 @@ import {Link} from 'react-router-dom'
 const Item = ( {id, title, description,price, pictureUrl, category} ) => {    
     return (
         <>        
-        <Row className="justify-content-md-center">  
-            
+        <Row className="justify-content-md-center">              
             <Card style={{ width: '18rem' }} className="mb-2">                
                 <Card.Header>{category.toUpperCase()}</Card.Header>
                 <Card.Img variant="top" src={pictureUrl} />

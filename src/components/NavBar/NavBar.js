@@ -18,8 +18,7 @@ const NavBar = () => {
                         <Nav.Link><Link to ="/categoria/gamer">Gamer</Link></Nav.Link>
                     </Nav>                    
                     <Link to="/cart"><CartWidget /></Link>
-                </Container>
-                
+                </Container>                
             </Navbar>
         </>
     )

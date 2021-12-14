@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
+import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({product}) => {
     return (        
@@ -15,10 +16,13 @@ const ItemDetail = ({product}) => {
                             <li>ID: {product[0].id}</li>
                             <li>Descripción: {product[0].description}</li>
                             <li>Precio: $ {product[0].price}</li>                
-                        </Card.Text>            
-                    </Card.Body>
+                            <li>Stock: {product[0].stock} unidades</li>                
+                        </Card.Text>                                                            
+                    </Card.Body>                    
                 </Card>
-            </Row>
+                <ItemCount initial={1} stock={product[0].stock} /> 
+            </Row>  
+                                 
         </>
     )
 }
