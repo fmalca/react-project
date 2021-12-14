@@ -9,15 +9,15 @@ import {Link} from 'react-router-dom'
 const NavBar = () => {
     return (
         <>           
-            <Navbar bg="light" variant="light">
+            <Navbar bg="light" variant="dark">
                 <Container fluid>
                     <Navbar.Brand ><Link to ="/"><img src={logo} alt="" /></Link></Navbar.Brand>
                     <Nav className="me-auto">
-                        <Link to ="/categoria/hogar">Hogar</Link>
-                        <Link to ="/categoria/empresa">Empresa</Link>
-                        <Link to ="/categoria/gamer">Gamer</Link>
+                        <Nav.Link><Link to ="/categoria/hogar">Hogar</Link></Nav.Link>
+                        <Nav.Link><Link to ="/categoria/empresa">Empresa</Link></Nav.Link>
+                        <Nav.Link><Link to ="/categoria/gamer">Gamer</Link></Nav.Link>
                     </Nav>                    
-                    <CartWidget />
+                    <Link to="/cart"><CartWidget /></Link>
                 </Container>
                 
             </Navbar>

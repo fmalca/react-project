@@ -1,10 +1,14 @@
 import React from 'react'
+import ItemCount from '../ItemCount/ItemCount'
 
 const Cart = () => {
+    const initial = 1
+    const stock = 5
+
     return (
-        <div>
-          <h1>Soy el cart</h1>
-        </div>
+        <>
+          <ItemCount initial={initial} stock={stock}/>
+        </>
     )
 }
 
