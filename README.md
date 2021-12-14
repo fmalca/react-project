@@ -2,7 +2,7 @@
   Entrega parcial
 
 # Dependencias
-  react-bootstrap
+  react-bootstrap (ya he trabajado con bootstrap)
   react-icons
   
 # Estructura general de la aplicación
