@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import ItemCount from '../ItemCount/ItemCount'
 import {Link} from 'react-router-dom'
 
 const ItemDetail = ({product}) => {
 
-    const [toCart, setToCart] = useState(false);    
+    const [gotoCart, setGoToCart] = useState(false);  
+    
+    const onAdd = (cant) => {        
+        console.log(cant)
+        setGoToCart(true)
+    }
 
     return (        
         <>  <hr/>
@@ -24,14 +30,15 @@ const ItemDetail = ({product}) => {
                         </Card.Text>                                                            
                     </Card.Body>                    
                 </Card>
-                <center>
-                    { flag
-                    ? <ItemCount initial={1} stock={product[0].stock} /> 
-                    : <Link to="/Cart">Ir al carrito</Link>
-                    }       
-                </center>         
-            </Row>  
-                                 
+                <Card style={{ width: '18rem' }} >
+                    <Card.Body className="align-items-center">                    
+                    { !gotoCart
+                    ? <ItemCount initial={1} stock={product[0].stock} onAdd={onAdd} /> 
+                    : <center><Link to="/Cart"><Button variant="secondary" size="sm">Terminar mi compra</Button></Link></center>                    
+                    }  
+                    </Card.Body>
+                </Card>
+            </Row>               
         </>
     )
 }

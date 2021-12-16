@@ -2,7 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import Button from 'react-bootstrap/Button';
 
-const ItemCount = ({initial, stock}) => {
+const ItemCount = ({initial, stock, onAdd}) => {
     const [count, setCount] = useState(initial)
 
     const add = () => { 
@@ -15,26 +15,23 @@ const ItemCount = ({initial, stock}) => {
         setCount(count => count - 1)   
     }
 
-    const onAdd = () => {
-        console.log("Agregando al carrito de compras...")        
-    }    
-
     return (
         <>  
             <center>
-                <Button variant="secondary" size="lg" onClick={substract} >
+                <Button variant="secondary" size="sm" onClick={substract} >
                     - 
                 </Button>
-                
-                <Button variant="success" size="lg">
+
+                <Button variant="success" size="sm">
                 {count}
-                </Button>
-                
-                <Button variant="secondary" size="lg" onClick={add} >            
+                </Button>                          
+
+                <Button variant="secondary" size="sm" onClick={add} >            
                     + 
                 </Button>
                 <br/>
-                <Button variant="secondary" size="lg" onClick={add} >            
+                <br/>
+                <Button variant="secondary" size="sm" onClick={() => onAdd(count)} >            
                     Agregar al carrito
                 </Button>
 
