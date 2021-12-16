@@ -17,26 +17,26 @@ const ItemCount = ({initial, stock}) => {
 
     const onAdd = () => {
         console.log("Agregando al carrito de compras...")        
-    }
+    }    
 
     return (
-        <>  <center>
-            <Button variant="secondary" size="lg" onClick={substract} >
-                - 
-            </Button>
-            
-            <Button variant="success" size="lg">
-            {count}
-            </Button>
-            
-            <Button variant="secondary" size="lg" onClick={add} >            
-                + 
-            </Button>
-            <br/>
-
-            <Button variant="primary" size="lg" onClick={onAdd} >            
-                Agregar al carrito 
-            </Button>
+        <>  
+            <center>
+                <Button variant="secondary" size="lg" onClick={substract} >
+                    - 
+                </Button>
+                
+                <Button variant="success" size="lg">
+                {count}
+                </Button>
+                
+                <Button variant="secondary" size="lg" onClick={add} >            
+                    + 
+                </Button>
+                <br/>
+                <Button variant="secondary" size="lg" onClick={add} >            
+                    Agregar al carrito
+                </Button>
 
             </center>
         </>
