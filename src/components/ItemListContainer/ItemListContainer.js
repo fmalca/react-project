@@ -11,16 +11,15 @@ const ItemListContainer = ({greeting}) => {
 
     const {idCat} = useParams()    
 
+    let data = idCat
+                ? resp => setProducts(resp.filter(prod=>prod.category===idCat))
+                : resp => setProducts(resp)
+
     useEffect(() => {
-        if(idCat){
-            getFetch.then(resp => setProducts(resp.filter(prod=>prod.category===idCat)))
+            getFetch.then(data)
             .catch(err=>console.log(err))
             .finally(()=>setLoading(false))
-        } else {
-            getFetch.then(resp => setProducts(resp))
-            .catch(err=>console.log(err))
-            .finally(()=>setLoading(false))
-        }
+
     },[idCat]) 
 
     return (
