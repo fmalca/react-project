@@ -2,16 +2,16 @@ import React from 'react'
 import {useState} from 'react'
 import Button from 'react-bootstrap/Button';
 
-const ItemCount = ({initial, stock, onAdd}) => {
-    const [count, setCount] = useState(initial)
+const ItemCount = ({item, onAdd}) => {
+    const [count, setCount] = useState(1)
 
     const add = () => { 
-        if (count < stock )       
+        if (count < item.stock )       
          setCount(count => count + 1)   
     }
 
     const substract = () => {
-        if (count > initial)
+        if (count > 1)
         setCount(count => count - 1)   
     }
 
