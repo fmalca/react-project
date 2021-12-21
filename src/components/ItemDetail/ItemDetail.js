@@ -9,10 +9,11 @@ import { CartContext } from '../../context/CartContext';
 const ItemDetail = ({product}) => {
 
     const [gotoCart, setGoToCart] = useState(false);  
-    const {addItem} = useContext(CartContext)
+    const {addItem} = useContext(CartContext)   
+
     
     const onAdd = (cant) => {                        
-        addItem(item,cant)
+        addItem({...product,quantity:cant })
         setGoToCart(true)
     }
 
@@ -35,7 +36,7 @@ const ItemDetail = ({product}) => {
                 <Card style={{ width: '18rem' }} >
                     <Card.Body className="align-items-center">                    
                     { !gotoCart
-                    ? <ItemCount item={product} onAdd={()=>onAdd(product,)} /> 
+                    ? <ItemCount item={product} onAdd={onAdd} /> 
                     : <center><Link to="/Cart"><Button variant="secondary" size="sm">Terminar mi compra</Button></Link></center>                    
                     }  
                     </Card.Body>

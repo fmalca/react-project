@@ -6,12 +6,13 @@ export const CartContext = createContext([])
 export const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
 
-    function addItem(id, quantity){
-        setCartList([...cartList, {id, quantity}])
+    function addItem(item){
+        setCartList([...cartList, item])
+        console.log(cartList)
     }
 
     function removeItem(itemid){
-        console.log("removeItem()")        
+        console.log(`removeItem id=${itemid}`)        
     }
 
     function clear(){
