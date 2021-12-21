@@ -15,7 +15,7 @@ export const CartContextProvider = ({children}) => {
         const index = cartList.findIndex( x => x.id === itemId)                    
         const tempCart = [...cartList]
         tempCart.splice(index,1)
-        setCartList[tempCart]
+        setCartList(tempCart)
     }
 
     function clear(){
