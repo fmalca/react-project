@@ -1,5 +1,8 @@
 # Proyecto del curso de React en Coderhouse
-  Entrega parcial
+  Desafío Contexto
+  Se agregó un contexto (CartContext) a la aplicación
+  Se agregó la funcionalidad de agregar un item al carrito
+  
 
 # Dependencias
   react-bootstrap (ya he trabajado con bootstrap)
@@ -19,5 +22,9 @@
                           para mostrar información detallada del item
 - ItemDetailContainer   : Carga la información del item y lo muestra a través de ItemDetail
 - ItemDetail            : Muestra información detallada del item. Tiene un botón para agregar al carrito de compras
+- ItemCounter           : Agrega los ítems de un determinado producto al carrito de compras
+- Cart                  : Muestra los elementos en el carrito de compras
+
+
                       
 
