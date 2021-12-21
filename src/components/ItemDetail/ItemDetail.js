@@ -9,11 +9,20 @@ import { CartContext } from '../../context/CartContext';
 const ItemDetail = ({product}) => {
 
     const [gotoCart, setGoToCart] = useState(false);  
-    const {addItem} = useContext(CartContext)   
+    const {addItem, isInCart,cartList, setCartList} = useContext(CartContext)   
 
-    
-    const onAdd = (cant) => {                        
-        addItem({...product,quantity:cant })
+    console.log(cartList)
+
+    const onAdd = (cant) => {     
+        if (isInCart(product.id)){
+            const index = cartList.findIndex( x => x.id === product.id)            
+            const newQuantity = cartList[index].quantity + cant
+            const tempCart = [...cartList]
+            tempCart.splice(index,1,{...product,quantity:newQuantity})
+            setCartList( tempCart )
+        }   else {            
+            addItem({...product,quantity:cant })
+        }                
         setGoToCart(true)
     }
 
