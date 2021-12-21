@@ -4,15 +4,18 @@ import React from 'react'
 export const CartContext = createContext([])
 
 export const CartContextProvider = ({children}) => {
+
     const [cartList, setCartList] = useState([])
 
     function addItem(item){
-        setCartList([...cartList, item])
-        console.log(cartList)
+        setCartList([...cartList, item])       
     }
 
-    function removeItem(itemid){
-        console.log(`removeItem id=${itemid}`)        
+    function removeItem(itemId){
+        const index = cartList.findIndex( x => x.id === itemId)                    
+        const tempCart = [...cartList]
+        tempCart.splice(index,1)
+        setCartList[tempCart]
     }
 
     function clear(){
