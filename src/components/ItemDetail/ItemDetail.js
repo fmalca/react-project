@@ -9,9 +9,7 @@ import { CartContext } from '../../context/CartContext';
 const ItemDetail = ({product}) => {
 
     const [gotoCart, setGoToCart] = useState(false);  
-    const {addItem, isInCart,cartList, setCartList} = useContext(CartContext)   
-
-    console.log(cartList)
+    const {addItem, isInCart,cartList, setCartList} = useContext(CartContext)       
 
     const onAdd = (cant) => {     
         if (isInCart(product.id)){
