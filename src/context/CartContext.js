@@ -8,14 +8,17 @@ export const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
 
     function addItem(item){
-        setCartList([...cartList, item])       
+        const itemInCart = cartList.find( obj => obj.id === item.id ) 
+        if (itemInCart){
+            itemInCart.quantity += item.quantity                 
+            setCartList([...cartList.filter( x=>x.id !== item.id),itemInCart ])
+        } else {
+            setCartList([...cartList, item])       
+        }
     }
 
     function removeItem(itemId){
-        const index = cartList.findIndex( x => x.id === itemId)                    
-        const tempCart = [...cartList]
-        tempCart.splice(index,1)
-        setCartList(tempCart)
+        setCartList(cartList.filter( item => item.id !== itemId))
     }
 
     function clear(){

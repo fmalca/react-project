@@ -7,7 +7,7 @@ const CartWidget = () => {
 
     const {cartList} = useContext(CartContext)   
     
-    const total =  cartList.length ? cartList.map(obj => obj.quantity).reduce((a,b) => a + b) : 0 
+    const total =  cartList.length ? cartList.map(obj => obj.quantity).reduce((a,b) => a + b) : '' 
 
     return (
         <div>
