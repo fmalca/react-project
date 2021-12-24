@@ -25,11 +25,6 @@ export const CartContextProvider = ({children}) => {
         setCartList([])
     }
 
-    function isInCart(id){
-        return cartList.find( obj => obj.id === id) !== undefined
-    }
-
-
     return (
         <>
            <CartContext.Provider value = {
@@ -37,8 +32,7 @@ export const CartContextProvider = ({children}) => {
                setCartList,
                addItem,
                removeItem,
-               clear,
-               isInCart
+               clear               
                }
            }>
             {children}
