@@ -1,12 +1,14 @@
 # Proyecto del curso de React en Coderhouse
-  Desafío Contexto
-  Se agregó un contexto (CartContext) a la aplicación
-  Se agregó la funcionalidad de agregar un item al carrito
-  
+  Desafio Item Collection
+  Se conectó la colección "items" de Google Fierstore
+  a ItemListContainer e ItemDetailContainer y se eliminaron
+  los mocks correspondientes  
 
 # Dependencias
-  react-bootstrap (ya he trabajado con bootstrap)
+  react-bootstrap 
   react-icons
+  react-router-dom
+  firebase
   
 # Estructura general de la aplicación
 
