@@ -5,7 +5,7 @@ const products = [
         category:"hogar",
         price:315,
         pictureUrl:"https://res.cloudinary.com/ds3gb0bqn/image/upload/v1639624231/hogar-1_jhvvzt.png",
-        stock: 10
+        stock: 6
      },
     {   id:2,
         title:"Laptop ci5 ASUS TUF F506LH",
