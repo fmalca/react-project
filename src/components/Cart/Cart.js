@@ -5,12 +5,7 @@ import { CartContext } from '../../context/CartContext'
 
 
 const Cart = () => {    
-    const {cartList, clear, removeItem} = useContext(CartContext)   
-
-    const total = cartList.length?
-                  cartList.map( item => item.quantity*item.price).reduce((a,b)=> a+b)   
-                  :
-                  0
+    const {cartList, clear, removeItem, getTotal} = useContext(CartContext)       
 
     return (
         <>
@@ -32,7 +27,7 @@ const Cart = () => {
                 {
                   cartList.map(
                     item => 
-                    <tr>
+                    <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.title}</td>
                       <td>{item.quantity}</td>
@@ -45,8 +40,10 @@ const Cart = () => {
                 </tbody>
               </Table>
               
-              <h3>{`Total del carrito = $US ${total.toLocaleString('en-IN')}`}</h3>
+              <h3>{`Total del carrito = $US ${getTotal().toLocaleString('en-IN')}`}</h3>
               <Button onClick={clear} >Vaciar carrito</Button>    
+
+              <Link to ="/order"><Button>Generar orden</Button></Link>
 
             </div>        
             : 

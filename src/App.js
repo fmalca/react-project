@@ -6,6 +6,7 @@ import NavBar from './components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import { CartContextProvider } from './context/CartContext';
+import Order from './components/Order/Order';
 
 
 function App() {
@@ -32,6 +33,10 @@ function App() {
                 exact 
                 path="/cart" 
                 element= { <Cart /> } />            
+              <Route 
+                exact 
+                path="/order" 
+                element= { <Order /> } />                  
             </Routes>
           </BrowserRouter>
         </Container>

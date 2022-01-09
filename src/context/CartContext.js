@@ -17,6 +17,14 @@ export const CartContextProvider = ({children}) => {
         }
     }
 
+
+    function getTotal() {
+        return cartList.length?
+        cartList.map( item => item.quantity*item.price).reduce((a,b)=> a+b)   
+        :
+        0
+    }
+
     function removeItem(itemId){
         setCartList(cartList.filter( item => item.id !== itemId))
     }
@@ -32,7 +40,8 @@ export const CartContextProvider = ({children}) => {
                setCartList,
                addItem,
                removeItem,
-               clear               
+               clear,
+               getTotal               
                }
            }>
             {children}
