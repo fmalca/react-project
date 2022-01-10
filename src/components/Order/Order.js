@@ -9,50 +9,68 @@ import {  addDoc, collection, getFirestore, Timestamp } from "firebase/firestore
 const Order = () => {
     const [formData, setFormData] = useState({})
     const [idOrder, setIdOrder] = useState('')  
-    const {cartList,getTotal} = useContext(CartContext)   
-    const [check, setCheck] = useState("")
+    const {cartList,getTotal,clear} = useContext(CartContext)   
+    const [errors, setErrors] = useState([])
+    const [check, setCheck] = useState(0)
 
+    const formIsValid = () => {
+        let isValid = true
+        if (formData.name === "" || formData.name===undefined){
+            setErrors( ...errors,"Debe ingresar un nombre")
+            isValid = false
+        }
+        if (formData.phone === "" || formData.phone===undefined){
+            setErrors( ...errors,"Debe ingresar teléfono")
+            isValid = false
+        }
+        if (formData.email ==="" || formData.email === undefined ){            
+            setErrors( ...errors,"Debe ingresar correo")
+            isValid = false
+        }
+        if (formData.email !== check){
+            setErrors( ...errors, "Correos no coinciden")
+            isValid = false
+        }
+        return isValid
+    }
+  
     const createOrder = (e) =>{
         e.preventDefault()        
        
-        if (formData.email ==="" || formData.email === undefined ){
-            return
-        }
-        if (formData.email !== check){
-            return
-        }
-        if (formData.name === "" || formData.name===undefined){
-            return
-        }
-        if (formData.phone === "" || formData.phone===undefined){
-            return
-        }
-
-        let order = {}            
-        order.date = Timestamp.fromDate(new Date());    
-        order.buyer = formData
-        order.total = getTotal();
-        order.items = cartList.map(cartItem => {
-            const id = cartItem.id
-            const name = cartItem.title
-            const price = cartItem.price * cartItem.quantity
-            const quantity = cartItem.quantity
+        if (formIsValid){        
+            let order = {}            
+            order.date = Timestamp.fromDate(new Date());    
+            order.buyer = formData
+            order.total = getTotal();
+            order.items = cartList.map(cartItem => {
+                const id = cartItem.id
+                const name = cartItem.title
+                const price = cartItem.price * cartItem.quantity
+                const quantity = cartItem.quantity
+                
+                return {id, name, price, quantity}   
+            })       
             
-            return {id, name, price, quantity}   
-        })       
+            const db = getFirestore()
+            const orders = collection(db,'orders')
         
-        const db = getFirestore()
-        const orders = collection(db,'orders')
-    
-        addDoc(orders,order)
-        .then(resp => setIdOrder(resp.id))
-        .catch(err=> console.log(err))
-        .finally(()=> setFormData({
-            name:'',
-            phone:'',
-            email: ''
-        }))        
-        
+            addDoc(orders,order)
+            .then(resp => setIdOrder(resp.id))
+            .catch(err=> console.log(err))
+            .finally(()=> { 
+                    setFormData({
+                        name:'',
+                        phone:'',
+                        email: ''
+                        }
+                    )
+                    clear()
+                }
+            )        
+        } 
+        else {
+            alert("El formulario contiene errores")
+        }
     }
 
     const handleChange = (e) => {
@@ -71,6 +89,8 @@ const Order = () => {
                 {idOrder ?
                         <h1>{`Su número de orden es ${idOrder} `} </h1>
                     :
+                        <>
+                        {errors}
                         <Form 
                             onSubmit={createOrder}                    
                             >
@@ -114,6 +134,7 @@ const Order = () => {
                                 Enviar
                             </Button>
                         </Form>
+                        </>
                 }
             </>
     )
