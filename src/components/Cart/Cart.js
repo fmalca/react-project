@@ -5,7 +5,7 @@ import { CartContext } from '../../context/CartContext'
 
 
 const Cart = () => {    
-    const {cartList, clear, removeItem, getTotal} = useContext(CartContext)       
+    const {cartList, clearCartList, removeItem, getTotal} = useContext(CartContext)       
 
     return (
         <>
@@ -41,8 +41,9 @@ const Cart = () => {
               </Table>
               
               <h3>{`Total del carrito = $US ${getTotal().toLocaleString('en-IN')}`}</h3>
-              <Button onClick={clear} >Vaciar carrito</Button>    
-
+              <Button onClick={clearCartList} >Vaciar carrito</Button>    
+              <br/>
+              <br/>
               <Link to ="/order"><Button>Generar orden</Button></Link>
 
             </div>        

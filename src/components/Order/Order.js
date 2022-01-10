@@ -4,41 +4,48 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { CartContext } from '../../context/CartContext'
 
+//import {  addDoc, doc, collection, getFirestore, Timestamp, writeBatch, query, where, getDocs, documentId } from "firebase/firestore"
 import {  addDoc, collection, getFirestore, Timestamp } from "firebase/firestore"
+import { Link } from 'react-router-dom'
+import { Alert } from 'react-bootstrap'
 
 const Order = () => {
     const [formData, setFormData] = useState({})
     const [idOrder, setIdOrder] = useState('')  
-    const {cartList,getTotal,clear} = useContext(CartContext)   
-    const [errors, setErrors] = useState([])
-    const [check, setCheck] = useState(0)
+    const {cartList,getTotal,clearCartList} = useContext(CartContext)   
+    const [error, setError] = useState("")
+    const [check, setCheck] = useState(0)    
+    const [loading, setLoading] = useState(false)
 
-    const formIsValid = () => {
-        let isValid = true
+    const formIsValid = () => {        
         if (formData.name === "" || formData.name===undefined){
-            setErrors( ...errors,"Debe ingresar un nombre")
-            isValid = false
+            setError("Debe ingresar un nombre")
+            return false
         }
         if (formData.phone === "" || formData.phone===undefined){
-            setErrors( ...errors,"Debe ingresar teléfono")
-            isValid = false
+            setError( "Debe ingresar teléfono")
+            return false
         }
         if (formData.email ==="" || formData.email === undefined ){            
-            setErrors( ...errors,"Debe ingresar correo")
-            isValid = false
+            setError( "Debe ingresar correo")
+            return false
         }
         if (formData.email !== check){
-            setErrors( ...errors, "Correos no coinciden")
-            isValid = false
+            setError("Correos no coinciden")
+            return false
         }
-        return isValid
+        return true
     }
+    
   
     const createOrder = (e) =>{
         e.preventDefault()        
        
-        if (formIsValid){        
-            let order = {}            
+        if (formIsValid()){        
+
+            setLoading(true)
+
+            let order = {}                        
             order.date = Timestamp.fromDate(new Date());    
             order.buyer = formData
             order.total = getTotal();
@@ -49,8 +56,9 @@ const Order = () => {
                 const quantity = cartItem.quantity
                 
                 return {id, name, price, quantity}   
-            })       
+            })                  
             
+
             const db = getFirestore()
             const orders = collection(db,'orders')
         
@@ -63,14 +71,39 @@ const Order = () => {
                         phone:'',
                         email: ''
                         }
-                    )
-                    clear()
+                    )                    
+                    clearCartList()
+                    setLoading(false)
                 }
-            )        
+            )   
+                
+            /* TO DO
+            const dbItems = collection(db, 'items')
+            const queryIds = query(
+                dbItems, where( documentId() , 'in', cartList.map(item => item.id))          
+            )
+            
+            const batch = writeBatch(db)                               
+   
+            getDocs(queryIds)
+            .then(resp => resp.docs.forEach(res => {
+                let ref = doc(db, "items", res.id);
+                batch.update(ref, {
+                stock: res.data().stock - cartList.find(item => item.id === res.id).cantidad
+                })
+            }))         
+           
+            batch.commit()            
+            */
+            
+
         } 
         else {
             alert("El formulario contiene errores")
         }
+
+
+
     }
 
     const handleChange = (e) => {
@@ -84,13 +117,18 @@ const Order = () => {
 
     return (
             <>
-                <h2>ORDEN</h2>
+                
+                {loading  ? "Cargando....": ""}
 
-                {idOrder ?
-                        <h1>{`Su número de orden es ${idOrder} `} </h1>
+                {idOrder ?                     
+                    <>                           
+                        <h1>{`Se registró su orden con número: ${idOrder} `} </h1>     
+                        <Link to ="/"><Button>Seguir comprando</Button></Link>         
+                    </>                        
                     :
-                        <>
-                        {errors}
+                    <>
+                        <h1>ORDEN</h1>
+                        { error?<Alert variant='danger'>{error}</Alert>:""}                        
                         <Form 
                             onSubmit={createOrder}                    
                             >
@@ -134,7 +172,7 @@ const Order = () => {
                                 Enviar
                             </Button>
                         </Form>
-                        </>
+                    </>
                 }
             </>
     )
