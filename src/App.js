@@ -21,11 +21,11 @@ function App() {
                 element= {<ItemListContainer greeting="Soy el contenedor" /> } />
               <Route 
                 exact
-                path="/categoria/:idCat" 
+                path="/category/:idCat" 
                 element= {<ItemListContainer greeting="Soy el contenedor" /> } />
               <Route 
                 exact
-                path="/detalle/:id" 
+                path="/detail/:id" 
                 element= { <ItemDetailContainer  /> } />            
               <Route 
                 exact 
