@@ -1,6 +1,5 @@
 import React from 'react'
 import {useState} from 'react'
-import Button from 'react-bootstrap/Button';
 
 const ItemCount = ({item, onAdd}) => {
     const [count, setCount] = useState(1)
@@ -18,22 +17,22 @@ const ItemCount = ({item, onAdd}) => {
     return (
         <>  
             <center>
-                <Button variant="secondary" size="sm" onClick={substract} >
+                <button  onClick={substract} >
                     - 
-                </Button>
+                </button>
 
-                <Button variant="success" size="sm">
+                <button >
                 {count}
-                </Button>                          
+                </button>                          
 
-                <Button variant="secondary" size="sm" onClick={add} >            
+                <button onClick={add} >            
                     + 
-                </Button>
+                </button>
                 <br/>
                 <br/>
-                <Button variant="secondary" size="sm" onClick={() => onAdd(count)} >            
+                <button  onClick={() => onAdd(count)} >            
                     Agregar al carrito
-                </Button>
+                </button>
 
             </center>
         </>

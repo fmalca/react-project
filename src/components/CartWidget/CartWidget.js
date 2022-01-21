@@ -1,5 +1,3 @@
-import { BsCart } from "react-icons/bs";
-import Badge from "react-bootstrap/Badge";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
@@ -11,7 +9,7 @@ const CartWidget = () => {
 
     return (
         <div>
-            <BsCart /><Badge bg="danger">{total}</Badge>
+            <div>Carrito</div><div>{total}</div>
         </div>
     )
 }

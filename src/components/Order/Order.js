@@ -1,13 +1,10 @@
 import React,{ useContext } from 'react'
 import { useState } from 'react'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 import { CartContext } from '../../context/CartContext'
 
 //import {  addDoc, doc, collection, getFirestore, Timestamp, writeBatch, query, where, getDocs, documentId } from "firebase/firestore"
 import {  addDoc, collection, getFirestore, Timestamp } from "firebase/firestore"
 import { Link } from 'react-router-dom'
-import { Alert } from 'react-bootstrap'
 
 const Order = () => {
     const [formData, setFormData] = useState({})
@@ -123,17 +120,17 @@ const Order = () => {
                 {idOrder ?                     
                     <>                           
                         <h1>{`Se registró su orden con número: ${idOrder} `} </h1>     
-                        <Link to ="/"><Button>Seguir comprando</Button></Link>         
+                        <Link to ="/"><button>Seguir comprando</button></Link>         
                     </>                        
                     :
                     <>
                         <h1>ORDEN</h1>
-                        { error?<Alert variant='danger'>{error}</Alert>:""}                        
-                        <Form 
+                        { error?<h1>{error}</h1>:""}                        
+                        <form 
                             onSubmit={createOrder}                    
                             >
 
-                            <Form.Control                         
+                            <input
                                 type="text" 
                                 placeholder="Nombre"
                                 name="name"
@@ -141,7 +138,7 @@ const Order = () => {
                                 onChange={handleChange}
                             />
                             <br />         
-                            <Form.Control                         
+                            <input
                                 type="text" 
                                 placeholder="Teléfono"
                                 name="phone"
@@ -150,7 +147,7 @@ const Order = () => {
                             />
                             <br />                                  
 
-                            <Form.Control 
+                            <input
                                 type="email" 
                                 placeholder="Correo electrónico"
                                 name="email"
@@ -159,7 +156,7 @@ const Order = () => {
                             />
                             <br /> 
 
-                            <Form.Control 
+                            <input
                                 type="email" 
                                 placeholder="Repita el correo electrónico"
                                 name="emailcheck"
@@ -168,10 +165,10 @@ const Order = () => {
                             />
                             <br /> 
 
-                            <Button variant="primary" type="submit">
+                            <button  type="submit">
                                 Enviar
-                            </Button>
-                        </Form>
+                            </button>
+                        </form>
                     </>
                 }
             </>

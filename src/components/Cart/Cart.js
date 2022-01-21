@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Button,Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/CartContext'
 
@@ -12,7 +11,7 @@ const Cart = () => {
           {
             cartList.length ? 
             <div>
-              <Table striped bordered hover>
+              <table>
                 <thead>
                   <tr>
                     <th>Id</th>
@@ -33,24 +32,24 @@ const Cart = () => {
                       <td>{item.quantity}</td>
                       <td>{item.price.toLocaleString('en-IN')}</td>
                       <td>{(item.price*item.quantity).toLocaleString('en-IN')}</td>
-                      <td><Button onClick={() => removeItem(item.id) }> Eliminar</Button></td>
+                      <td><button onClick={() => removeItem(item.id) }> Eliminar</button></td>
                     </tr>
                   )
                 }
                 </tbody>
-              </Table>
+              </table>
               
               <h3>{`Total del carrito = $US ${getTotal().toLocaleString('en-IN')}`}</h3>
-              <Button onClick={clearCartList} >Vaciar carrito</Button>    
+              <button onClick={clearCartList} >Vaciar carrito</button>    
               <br/>
               <br/>
-              <Link to ="/order"><Button>Generar orden</Button></Link>
+              <Link to ="/order"><button>Generar orden</button></Link>
 
             </div>        
             : 
             <div>
               <p>No hay items seleccionados</p>
-              <Link to ="/"><Button>Seguir comprando</Button></Link>
+              <Link to ="/"><button>Seguir comprando</button></Link>
             </div>
           }
             

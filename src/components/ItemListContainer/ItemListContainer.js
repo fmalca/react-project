@@ -1,6 +1,4 @@
-import Alert from "react-bootstrap/Alert";
 import ItemList from "../ItemList/ItemList";
-import Container from 'react-bootstrap/Container';
 import {useState, useEffect} from "react";
 import { useParams} from "react-router-dom";
 
@@ -27,12 +25,12 @@ const ItemListContainer = ({greeting}) => {
 
     return (
         <div>
-            <Container fluid >  
+            <div className="container fluid" >  
                                
-                { loading ? <Alert variant="info">Cargando datos ...</Alert>                             
+                { loading ? <h1>Cargando datos ...</h1>                             
                             : <ItemList data={products} /> }               
                               
-            </Container>
+            </div>
         </div>
    )
 }

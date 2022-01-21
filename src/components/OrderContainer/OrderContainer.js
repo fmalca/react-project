@@ -1,7 +1,5 @@
 import React,{ useContext } from 'react'
 import { useState } from 'react'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 import { CartContext } from '../../context/CartContext'
 
 import {  addDoc, collection, getFirestore, Timestamp } from "firebase/firestore"
