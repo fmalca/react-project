@@ -11,7 +11,7 @@ const Item = ( {id, title, description,price, pictureUrl, category} ) => {
                 <div>
                     <div>{title}</div>       
                     <button >                        
-                        <Link to = {`/detalle/${id}`} >
+                        <Link to = {`/detail/${id}`} >
                         Ver detalle
                         </Link>    
                     </button>                

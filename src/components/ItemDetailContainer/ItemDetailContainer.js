@@ -3,6 +3,7 @@ import ItemDetail from '../ItemDetail/ItemDetail'
 import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import { doc, getDoc, getFirestore } from "firebase/firestore"
+import Loading from "../Loading/Loading";
 
 
 const ItemDetailContainer = () => {
@@ -22,7 +23,7 @@ const ItemDetailContainer = () => {
     }, [id])
 
     return (
-        <>
+        <> 
             {loading?<Loading />:<ItemDetail product={product} />}
         </>
     )

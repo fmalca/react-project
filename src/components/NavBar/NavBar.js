@@ -47,10 +47,12 @@ const NavBar = () => {
               component="div"
               sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
             >
-              <Avatar 
-                src={logo} 
-                alt="logo"
-                sx={{ width: 48, height: 48 }} />
+              <Link to="/">
+                <Avatar 
+                  src={logo} 
+                  alt="logo"
+                  sx={{ width: 48, height: 48 }} />
+              </Link>
             </Typography>
   
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
