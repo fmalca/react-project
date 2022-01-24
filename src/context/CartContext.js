@@ -18,6 +18,16 @@ export const CartContextProvider = ({children}) => {
     }
 
 
+    function updateItem(item){
+        const itemInCart = cartList.find( obj => obj.id === item.id ) 
+        if (itemInCart){
+            itemInCart.quantity = item.quantity                 
+            setCartList([...cartList.filter( x=>x.id !== item.id),itemInCart ])
+        }
+    }
+
+
+
     function getTotal() {
         return cartList.length?
         cartList.map( item => item.quantity*item.price).reduce((a,b)=> a+b)   
@@ -39,6 +49,7 @@ export const CartContextProvider = ({children}) => {
                {cartList,
                setCartList,
                addItem,
+               updateItem,
                removeItem,
                clearCartList,
                getTotal               

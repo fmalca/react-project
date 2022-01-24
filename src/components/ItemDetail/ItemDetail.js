@@ -73,7 +73,7 @@ const ItemDetail = ({product}) => {
             <CardActions>
             <div>                    
                     { !gotoCart
-                    ? <ItemCount stock={product.stock} onAdd={onAdd} /> 
+                    ? <ItemCount stock={product.stock} onAdd={onAdd} initial={1} /> 
                     : <center><Link to="/Cart"><Button >Terminar mi compra</Button></Link></center>                    
                     }  
                     </div>                      

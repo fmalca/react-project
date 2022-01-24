@@ -5,8 +5,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-const ItemCount = ({stock, onAdd}) => {
-    const [count, setCount] = useState(1)
+const ItemCount = ({initial, stock, onAdd, id}) => {
+    const [count, setCount] = useState(initial)
 
     const add = () => { 
         if (count < stock )       
@@ -30,16 +30,10 @@ const ItemCount = ({stock, onAdd}) => {
                     <Button size="small" onClick={substract} variant="contained">-</Button>
                     <Button size="small"  variant="text">{count}</Button>
                     <Button size="small"  onClick={add} variant="contained">+</Button>
+                    <Button size="small"  onClick={() => onAdd(count, id)} variant="contained">Agregar al carrito</Button>
                 </Stack>
             </Box>
-            <Box
-                display="flex"
-                width={500} height={80}
-                alignItems="center"
-                justifyContent="center"
-            >
-                <Button size="small"  onClick={() => onAdd(count)} variant="contained">Agregar al carrito</Button>
-            </Box>
+
         </>
     )
 }

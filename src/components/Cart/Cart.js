@@ -12,9 +12,16 @@ import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 
+import ItemCount from '../ItemCount/ItemCount'
+
 
 const Cart = () => {
   const { cartList, clearCartList, removeItem, getTotal } = useContext(CartContext)
+  const {updateItem} = useContext(CartContext)   
+
+  const onAdd = (cant, id) => {                
+    updateItem({id:id, quantity:cant})    
+}
 
   return (
         <>
@@ -41,7 +48,7 @@ const Cart = () => {
                       <TableRow key={item.id}>
                         <TableCell>{item.id}</TableCell>
                         <TableCell>{item.title}</TableCell>
-                        <TableCell> {item.quantity} </TableCell>
+                        <TableCell> <ItemCount initial={item.quantity} stock={item.stock} id={item.id} onAdd={onAdd} /> </TableCell>
                         <TableCell>{item.price.toLocaleString('en-IN')}</TableCell>
                         <TableCell>{(item.price * item.quantity).toLocaleString('en-IN')}</TableCell>
                         <TableCell><button onClick={() => removeItem(item.id)}> Eliminar</button></TableCell>
