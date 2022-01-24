@@ -3,6 +3,18 @@ import ItemCount from '../ItemCount/ItemCount'
 import {Link} from 'react-router-dom'
 import { CartContext } from '../../context/CartContext';
 
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+
 const ItemDetail = ({product}) => {
 
     const [gotoCart, setGoToCart] = useState(false);  
@@ -14,30 +26,66 @@ const ItemDetail = ({product}) => {
     }
 
     return (        
-        <>  <hr/>
-            <div>  
-                <div>
-                    <div>Detalle del producto</div>
-                    <img src={product.pictureUrl} alt="" />
-                    <div>
-                        <div>{product.title}</div>
-                        <div>
-                            <li>ID: {product.id}</li>
-                            <li>Descripción: {product.description}</li>
-                            <li>Precio: $ {product.price}</li>                
-                            <li>Stock: {product.stock} unidades</li>                
-                        </div>                                                            
-                    </div>                    
-                </div>
-                <div >
-                    <div>                    
+        <>  
+        <br/>
+        <Container maxWidth="md">
+               <Card sx={{ maxWidth: 520 }}  >
+            <CardMedia
+                style={{
+                width: "100%",
+                maxHeight: "300px"
+                }}
+                component="img"                
+                image={product.pictureUrl}
+                alt="foto"
+            />           
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {product.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                <List>
+                    <ListItem>
+                        <ListItemText> 
+                            ID: {product.id}
+                        </ListItemText>
+                    </ListItem>                        
+                    <ListItem>
+                        <ListItemText> 
+                        Descripción: {product.description}                        
+                        </ListItemText>
+                    </ListItem>                        
+                    <ListItem>                        
+                        <ListItemText> 
+                        Precio: $ {product.price}
+                        </ListItemText>
+                    </ListItem>    
+                        <ListItem>
+                        <ListItemText> 
+                        Stock: {product.stock} unidades
+                        </ListItemText>                    
+                        </ListItem> 
+                </List>
+             
+                
+                </Typography>
+            </CardContent>
+            <CardActions>
+            <div>                    
                     { !gotoCart
-                    ? <ItemCount item={product} onAdd={onAdd} /> 
-                    : <center><Link to="/Cart"><button >Terminar mi compra</button></Link></center>                    
+                    ? <ItemCount stock={product.stock} onAdd={onAdd} /> 
+                    : <center><Link to="/Cart"><Button >Terminar mi compra</Button></Link></center>                    
                     }  
-                    </div>
-                </div>
-            </div>               
+                    </div>                      
+
+                
+            </CardActions>
+        </Card>                
+        </Container>
+
+
+
+            
         </>
     )
 }

@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-const ItemCount = ({stock, onAdd}) => {
+const ItemCount2 = ({stock, onAdd}) => {
     const [count, setCount] = useState(1)
 
     const add = () => { 
@@ -44,4 +44,4 @@ const ItemCount = ({stock, onAdd}) => {
     )
 }
 
-export default ItemCount
+export default ItemCount2

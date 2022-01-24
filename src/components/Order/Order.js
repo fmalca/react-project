@@ -5,6 +5,7 @@ import { CartContext } from '../../context/CartContext'
 //import {  addDoc, doc, collection, getFirestore, Timestamp, writeBatch, query, where, getDocs, documentId } from "firebase/firestore"
 import {  addDoc, collection, getFirestore, Timestamp } from "firebase/firestore"
 import { Link } from 'react-router-dom'
+import Box from '@mui/material/Box';
 
 const Order = () => {
     const [formData, setFormData] = useState({})
@@ -124,8 +125,14 @@ const Order = () => {
                     </>                        
                     :
                     <>
-                        <h1>ORDEN</h1>
+                        <h1>ORDEN</h1>                        
                         { error?<h1>{error}</h1>:""}                        
+                        <Box
+                            display="flex"
+                            width={500} height={80}
+                            alignItems="center"
+                            justifyContent="center"
+                        >
                         <form 
                             onSubmit={createOrder}                    
                             >
@@ -169,6 +176,7 @@ const Order = () => {
                                 Enviar
                             </button>
                         </form>
+                        </Box>
                     </>
                 }
             </>

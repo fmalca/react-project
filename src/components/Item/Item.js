@@ -18,7 +18,7 @@ const Item = ( {id, title, description,price, pictureUrl, category} ) => {
             <CardMedia
                 style={{
                 width: "100%",
-                maxHeight: "180px"
+                maxHeight: "240px"
                 }}
                 component="img"                
                 image={pictureUrl}

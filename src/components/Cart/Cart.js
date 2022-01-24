@@ -2,59 +2,72 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/CartContext'
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 
-const Cart = () => {    
-    const {cartList, clearCartList, removeItem, getTotal} = useContext(CartContext)       
 
-    return (
+const Cart = () => {
+  const { cartList, clearCartList, removeItem, getTotal } = useContext(CartContext)
+
+  return (
         <>
-          {
-            cartList.length ? 
-            <div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Precio $US</th>
-                    <th>Subtotal</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
+        <hr/>
+      {
+        cartList.length ?
+        <Container maxWidth="lg">
+          <TableContainer component={Paper} >
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Id</TableCell>
+                  <TableCell>Nombre</TableCell>
+                  <TableCell>Cantidad</TableCell>
+                  <TableCell>Precio $US</TableCell>
+                  <TableCell>Subtotal</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {
                   cartList.map(
-                    item => 
-                    <tr key={item.id}>
-                      <td>{item.id}</td>
-                      <td>{item.title}</td>
-                      <td>{item.quantity}</td>
-                      <td>{item.price.toLocaleString('en-IN')}</td>
-                      <td>{(item.price*item.quantity).toLocaleString('en-IN')}</td>
-                      <td><button onClick={() => removeItem(item.id) }> Eliminar</button></td>
-                    </tr>
+                    item =>
+                      <TableRow key={item.id}>
+                        <TableCell>{item.id}</TableCell>
+                        <TableCell>{item.title}</TableCell>
+                        <TableCell> {item.quantity} </TableCell>
+                        <TableCell>{item.price.toLocaleString('en-IN')}</TableCell>
+                        <TableCell>{(item.price * item.quantity).toLocaleString('en-IN')}</TableCell>
+                        <TableCell><button onClick={() => removeItem(item.id)}> Eliminar</button></TableCell>
+                      </TableRow>
                   )
                 }
-                </tbody>
-              </table>
-              
-              <h3>{`Total del carrito = $US ${getTotal().toLocaleString('en-IN')}`}</h3>
-              <button onClick={clearCartList} >Vaciar carrito</button>    
-              <br/>
-              <br/>
-              <Link to ="/order"><button>Generar orden</button></Link>
+              </TableBody>
+            </Table>
+          </TableContainer>
+            <h3>{`Total del carrito = $US ${getTotal().toLocaleString('en-IN')}`}</h3>
+                <Button onClick={clearCartList} >Vaciar carrito</Button>
+                <br />
+                <br />
+                <Link to="/order"><Button>Generar orden</Button></Link>
 
-            </div>        
-            : 
-            <div>
-              <p>No hay items seleccionados</p>
-              <Link to ="/"><button>Seguir comprando</button></Link>
-            </div>
-          }
-            
-        </>
+          </Container>
+          :
+          <div>
+            <p>No hay items seleccionados</p>
+            <Link to="/"><button>Seguir comprando</button></Link>
+          </div>
+          
+      }
+        
+          </>
     )
 }
 
-export default Cart
+      export default Cart
