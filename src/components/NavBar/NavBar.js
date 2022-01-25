@@ -24,6 +24,7 @@ const NavBar = () => {
 
 const logo =
   "https://res.cloudinary.com/ds3gb0bqn/image/upload/v1642111434/logo_ysbytb.jpg";  
+  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
