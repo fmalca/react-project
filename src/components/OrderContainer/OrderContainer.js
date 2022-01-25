@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { CartContext } from "../../context/CartContext";
+import Loading from "../Loading/Loading";
 
 import {
   addDoc,
@@ -8,40 +9,44 @@ import {
   getFirestore,
   Timestamp,
 } from "firebase/firestore";
+import { Link } from "react-router-dom";
 import Order from "../Order/Order";
 
 const OrderContainer = () => {
   const [formData, setFormData] = useState({});
   const [idOrder, setIdOrder] = useState("");
-  const { cartList, getTotal, clear } = useContext(CartContext);
-  const [errors, setErrors] = useState([]);
+  const { cartList, getTotal, clearCartList } = useContext(CartContext);
+  const [error, setError] = useState("");
   const [check, setCheck] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const formIsValid = () => {
-    let isValid = true;
     if (formData.name === "" || formData.name === undefined) {
-      setErrors(...errors, "Debe ingresar un nombre");
-      isValid = false;
+      setError("Debe ingresar un nombre");
+      return false;
     }
     if (formData.phone === "" || formData.phone === undefined) {
-      setErrors(...errors, "Debe ingresar teléfono");
-      isValid = false;
+      setError("Debe ingresar teléfono");
+      return false;
     }
     if (formData.email === "" || formData.email === undefined) {
-      setErrors(...errors, "Debe ingresar correo");
-      isValid = false;
+      setError("Debe ingresar correo");
+      return false;
     }
     if (formData.email !== check) {
-      setErrors(...errors, "Correos no coinciden");
-      isValid = false;
+      setError("Correos no coinciden");
+      return false;
     }
-    return isValid;
+    return true;
   };
 
   const createOrder = (e) => {
     e.preventDefault();
 
     if (formIsValid()) {
+      setLoading(true);
+      setError("");
+
       let order = {};
       order.date = Timestamp.fromDate(new Date());
       order.buyer = formData;
@@ -67,7 +72,8 @@ const OrderContainer = () => {
             phone: "",
             email: "",
           });
-          clear();
+          clearCartList();
+          setLoading(false);
         });
     } else {
       alert("El formulario contiene errores");
@@ -83,15 +89,29 @@ const OrderContainer = () => {
   };
 
   return (
-    <Order
-      idOrder={idOrder}
-      formData={formData}
-      check={check}
-      errors={errors}
-      createOrder={createOrder}
-      handleChange={handleChange}
-    />
+    <>
+      {loading ? <Loading /> : ""}
+
+      {idOrder ? (
+        <>
+          <h1>{`Se registró su orden con número: ${idOrder} `} </h1>
+          <Link to="/">
+            <button>Seguir comprando</button>
+          </Link>
+        </>
+      ) : (
+        <>                 
+          <Order            
+            formData={formData}
+            check={check}
+            error={error}
+            createOrder={createOrder}
+            handleChange={handleChange}
+          />
+        </>
+      )}
+    </>
   );
 };
 
-export default Order;
+export default OrderContainer;

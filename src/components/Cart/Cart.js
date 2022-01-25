@@ -21,7 +21,9 @@ const Cart = () => {
 
   const onAdd = (cant, id) => {
     updateItem({ id: id, quantity: cant });
-  };
+  };  
+
+  const compare = (a,b) => a.title>b.title?1:(a.title<b.title?-1:0)
 
   return (
     <>
@@ -41,7 +43,7 @@ const Cart = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {cartList.map((item) => (
+                {[...cartList].sort(compare).map((item) => (
                   <TableRow key={item.id}>
                     <TableCell>{item.id}</TableCell>
                     <TableCell>{item.title}</TableCell>
@@ -52,6 +54,7 @@ const Cart = () => {
                         stock={item.stock}
                         id={item.id}
                         onAdd={onAdd}
+                        where="count"
                       />{" "}
                     </TableCell>
                     <TableCell>{item.price.toLocaleString("en-IN")}</TableCell>
