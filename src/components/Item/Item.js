@@ -25,9 +25,7 @@ const Item = ( {id, title, description,price, pictureUrl, category} ) => {
                 alt="foto"
             />           
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {category.toUpperCase()}
-                </Typography>
+
                 <Typography variant="body2" color="text.secondary">
                     {title}
                 </Typography>
