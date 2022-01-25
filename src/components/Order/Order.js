@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { CartContext } from "../../context/CartContext";
+import Loading from "../Loading/Loading";
 
 import {
   addDoc,
@@ -90,7 +91,7 @@ const Order = () => {
 
   return (
     <>
-      {loading ? "Cargando...." : ""}
+      {loading ? <Loading /> : ""}
 
       {idOrder ? (
         <>

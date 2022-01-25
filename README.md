@@ -1,32 +1,21 @@
-# Proyecto del curso de React en Coderhouse
-  Desafio Item Collection
-  Se conectó la colección "items" de Google Fierstore
-  a ItemListContainer e ItemDetailContainer y se eliminaron
-  los mocks correspondientes  
+# Proyecto carrito de compras con React
 
 # Dependencias
-  react-bootstrap 
-  react-icons
-  react-router-dom
-  firebase
   
-# Estructura general de la aplicación
+ ## Router 
+ - react-router-dom v. 6.1.1
+  Es la librería estándar para ruteo, no he probado otras
 
-- App : Definición de rutas
-        /                   --> ItemListContainer
-        /categoria/:idCat   --> ItemListContainer
-        /detalle/:id        --> ItemDetailContainer
-        /cart               --> Cart 
+ ## Backend
+ - firebase v. 9.6.2
+  Es la que se usó en el curso
 
-- ItemListContainer     : Carga los datos y llama a ItemList
-- ItemList              : Lista cada dato llamando a Item (es una lista de Item)
-- Item                  : Muestra los datos del item. Cada Item tiene un botón que llama a ItemDetailContainer
-                          para mostrar información detallada del item
-- ItemDetailContainer   : Carga la información del item y lo muestra a través de ItemDetail
-- ItemDetail            : Muestra información detallada del item. Tiene un botón para agregar al carrito de compras
-- ItemCounter           : Agrega los ítems de un determinado producto al carrito de compras
-- Cart                  : Muestra los elementos en el carrito de compras
+## UI
+ - @mui/material" v. 5.3.0 
+   @emotion/react v. 11.7.1
+   @emotion/styled":  v. 11.6.0
+   @mui/icons-material v. 5.3.0
 
-
-                      
-
+   Los desafíos los realicé con react-bootstrap, para el final
+   quise probar otra librería y elegí Material UI, entre las dos
+   me gustó más esta última.
