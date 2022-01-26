@@ -65,7 +65,7 @@ const OrderContainer = () => {
 
       addDoc(orders, order)
         .then((resp) => setIdOrder(resp.id))
-        .catch((err) => alert(err))
+        .catch((err) => alert("Se produjo un error"))
         .finally(() => {
           setFormData({
             name: "",

@@ -26,7 +26,7 @@ const ItemListContainer = () => {
       .then((resp) =>
         setProducts(resp.docs.map((prod) => ({ id: prod.id, ...prod.data() })))
       )
-      .catch((err) => alert("Error"))
+      .catch((err) => alert("Se produjo un Error"))
       .finally(() => setLoading(false));
   }, [idCat]);
 
