@@ -8,7 +8,8 @@
 
  ## Backend
  - firebase v. 9.6.2
-  Es lo que se usó en el curso
+  Para base de datos y backend se usó firebase como primera opción, en adelante
+  se evaluarán otras alternativas.
 
 ## UI
  - @mui/material" v. 5.3.0 
